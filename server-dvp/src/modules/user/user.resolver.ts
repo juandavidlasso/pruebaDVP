@@ -1,10 +1,15 @@
-import { createUser, getAllUsers } from "./user.service";
+import { createUser, getAllUsers, loginUser } from "./user.service";
+import { requireAuth } from "../../shared/utils/requireAuth";
 
 export const userResolvers = {
     Query: {
-        users: async () => await getAllUsers(),
+        users: (_:any, __:any, context:any) => {
+            requireAuth(context);
+            return getAllUsers();
+        }
     },
     Mutation: {
-        createUser: async (_: any, args: { email: string; password: string }) => await createUser(args.email, args.password)
+        createUser: (_: any, args: { email: string; password: string }) => createUser(args.email, args.password),
+        login: (_: any, args: { email: string; password: string }) => loginUser(args.email, args.password),
     },
 };

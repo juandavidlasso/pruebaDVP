@@ -3,7 +3,6 @@ export const userTypeDefs = `#graphql
     type User {
         id_user: Int
         email: String
-        password: String
     }
 
     type Query {
@@ -12,5 +11,6 @@ export const userTypeDefs = `#graphql
 
     type Mutation {
         createUser(email: String!, password: String!): User
+        login(email: String!, password: String!): String
     }
 `;
