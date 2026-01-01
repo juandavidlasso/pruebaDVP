@@ -2,6 +2,6 @@
 export const ROUTES = {
     ROOT: '/',
     LOGIN: '/login',
-    REGISTER: '/dashboard',
+    REGISTER: '/register',
     DEBTS: '/debts',
 } as const;
