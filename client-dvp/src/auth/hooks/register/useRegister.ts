@@ -13,8 +13,11 @@ import { ROUTES } from '../../../shared/constants/routes';
 
 const schemaValidation = yup
     .object({
-        email: yup.string().email().required('The email is required'),
-        password: yup.string().required('The password is required'),
+        email: yup
+            .string()
+            .email()
+            .required('El correo electrónico es requerido'),
+        password: yup.string().required('La contraseña es requerida'),
     })
     .required();
 

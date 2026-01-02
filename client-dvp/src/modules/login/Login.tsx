@@ -27,15 +27,15 @@ const LoginPage = () => {
                 <form onSubmit={onSubmit}>
                     <CardContent className="flex flex-col gap-8 items-center px-8!">
                         <h2 className="text-black text-3xl font-bold">
-                            Sign In
+                            Iniciar Sesión
                         </h2>
                         <Box className="w-full">
                             <TextField
                                 variant="outlined"
-                                label="Email"
+                                label="Correo electrónico"
                                 type="text"
                                 fullWidth
-                                placeholder="Email"
+                                placeholder="Ingresa tu correo electrónico"
                                 {...register('email')}
                                 error={!!errors.email}
                                 helperText={errors.email?.message}
@@ -44,13 +44,13 @@ const LoginPage = () => {
                         <Box className="w-full">
                             <TextField
                                 variant="outlined"
-                                label="Password"
+                                label="Contraseña"
                                 type="password"
                                 slotProps={{
                                     input: { autoComplete: 'off' },
                                 }}
                                 fullWidth
-                                placeholder="Password"
+                                placeholder="Ingresa tu contraseña"
                                 {...register('password')}
                                 error={!!errors.password}
                                 helperText={errors.password?.message}
@@ -64,7 +64,11 @@ const LoginPage = () => {
                                 fullWidth
                                 className="bg-black! hover:bg-[#7D2D6F]! normal-case! text-xl! py-2!"
                             >
-                                {loading ? <CircularProgress /> : 'Sign In'}
+                                {loading ? (
+                                    <CircularProgress />
+                                ) : (
+                                    'Iniciar sesión'
+                                )}
                             </Button>
                         </Box>
                     </CardContent>
@@ -73,13 +77,13 @@ const LoginPage = () => {
                 <CardActions>
                     <Box className="w-full flex justify-center items-center mb-4 gap-3">
                         <span className="text-gray-600 text-xl">
-                            Don't have an account?
+                            No tienes una cuenta?
                         </span>
                         <Link
                             to="/register"
                             className="text-[#7D2D6F]! text-xl hover:underline!"
                         >
-                            Sign Up
+                            Regístrate aquí
                         </Link>
                     </Box>
                 </CardActions>

@@ -22,15 +22,15 @@ const RegisterPage = () => {
                 <form onSubmit={onSubmit}>
                     <CardContent className="flex flex-col gap-8 items-center px-8!">
                         <h2 className="text-black text-3xl font-bold">
-                            Sign Up
+                            Registro
                         </h2>
                         <Box className="w-full">
                             <TextField
                                 variant="outlined"
-                                label="Email"
+                                label="Correo electrónico"
                                 type="text"
                                 fullWidth
-                                placeholder="Email"
+                                placeholder="Ingresa tu correo electrónico"
                                 {...register('email')}
                                 error={!!errors.email}
                                 helperText={errors.email?.message}
@@ -39,10 +39,10 @@ const RegisterPage = () => {
                         <Box className="w-full">
                             <TextField
                                 variant="outlined"
-                                label="Password"
+                                label="Contraseña"
                                 type="password"
                                 fullWidth
-                                placeholder="Password"
+                                placeholder="Ingresa tu contraseña"
                                 {...register('password')}
                                 error={!!errors.password}
                                 helperText={errors.password?.message}
@@ -56,7 +56,7 @@ const RegisterPage = () => {
                                 fullWidth
                                 className="bg-black! hover:bg-[#7D2D6F]! normal-case! text-xl! py-2!"
                             >
-                                {loading ? <CircularProgress /> : 'Sign Up'}
+                                {loading ? <CircularProgress /> : 'Registrarse'}
                             </Button>
                         </Box>
                     </CardContent>
@@ -65,13 +65,13 @@ const RegisterPage = () => {
                 <CardActions>
                     <Box className="w-full flex justify-center items-center mb-4 gap-3">
                         <span className="text-gray-600 text-xl">
-                            Already have an account?
+                            Ya tienes una cuenta?
                         </span>
                         <Link
                             to="/login"
                             className="text-[#7D2D6F]! text-xl hover:underline!"
                         >
-                            Sign In
+                            Inicia sesión
                         </Link>
                     </Box>
                 </CardActions>
