@@ -24,3 +24,11 @@ export const internalServerError = () => {
         },
     });
 }
+
+export const unauthorized = (message = 'Unauthorized') => {
+  return new GraphQLError(message, {
+    extensions: {
+      code: 'UNAUTHORIZED',
+    },
+  });
+};

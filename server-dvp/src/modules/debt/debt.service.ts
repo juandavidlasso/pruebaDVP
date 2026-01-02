@@ -1,9 +1,9 @@
 import { internalServerError } from "../../shared/errors/graphql-errors";
 import { Debt } from "./debt.model";
 
-export const getAllDebts = async (): Promise<Debt[]> => {
+export const getADebtsByUser = async (id_user:number): Promise<Debt[]> => {
     try {
-        return await Debt.findAll();
+        return await Debt.findAll({ where: { user_id: id_user }});
     } catch (error) {
         throw internalServerError();
     }

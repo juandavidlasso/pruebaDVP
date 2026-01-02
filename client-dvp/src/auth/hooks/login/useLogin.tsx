@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useMutation } from '@apollo/client/react';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -16,17 +15,10 @@ const schemaValidation = yup
     .required();
 
 export const useLogin = () => {
-    const { saveToken, setUser } = useAuth();
-    const navigate = useNavigate();
+    const { saveToken } = useAuth();
     const [login, { loading }] = useMutation<LoginResponse>(LOGIN_MUTATION, {
         onCompleted: (data) => {
-            toast('Login successful', { type: 'success' });
-            saveToken(data.login.token);
-            setUser(data.user);
-
-            setTimeout(() => {
-                navigate('/debts', { replace: true });
-            }, 2000);
+            saveToken(data.login);
         },
         onError: (error) => {
             toast(error.message, { type: 'error' });

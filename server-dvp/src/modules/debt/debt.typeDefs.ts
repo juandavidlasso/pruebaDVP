@@ -10,7 +10,7 @@ export const debtTypeDefs = `#graphql
     }
 
     type Query {
-        debts: [Debt]
+        debtsByUser: [Debt]
     }
 
     type Mutation {

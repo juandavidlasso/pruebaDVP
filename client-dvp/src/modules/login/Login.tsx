@@ -8,11 +8,16 @@ import {
     Divider,
     TextField,
 } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { useLogin } from '../../auth/hooks/login/useLogin';
+import { useAuth } from '../../auth/hooks/auth/useAuth';
+import { ROUTES } from '../../shared/constants/routes';
 
 const LoginPage = () => {
     const { errors, loading, register, onSubmit } = useLogin();
+    const { user } = useAuth();
+
+    if (user) return <Navigate to={ROUTES.DEBTS} />;
     return (
         <Box className="w-screen h-screen flex items-center justify-center bg-black px-3">
             <Card className="w-112.5 bg-white rounded-2xl! p-0 min-h-[60vh] flex flex-col justify-between pb-3 max-lg:w-[90%]">
