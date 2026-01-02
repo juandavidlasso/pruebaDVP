@@ -42,7 +42,6 @@ export const debtResolvers = {
                 id_debt: debt?.id_debt,
                 amount: debt?.amount,
                 description: debt?.description,
-                paid_at: new Date().toISOString(),
                 user_id: debt?.user_id,
             });
         },

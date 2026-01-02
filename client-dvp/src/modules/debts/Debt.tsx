@@ -1,15 +1,32 @@
 import { useState } from 'react';
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import DebtRegister from './components/DebtRegister';
 import ListDebts from './components/ListDebts';
+import type { Debt } from '../../shared/types/debt';
+import DebtModal from './components/DebtModal';
 
 const DebtsPage = () => {
-    const [showFormDebt, setShowFormDebt] = useState<boolean>(false);
+    const [open, setOpen] = useState(false);
+    const [selectedDebt, setSelectedDebt] = useState<Debt | null>(null);
+    const handleCreate = () => {
+        setSelectedDebt(null);
+        setOpen(true);
+    };
+    const handleEdit = (debt: Debt) => {
+        setSelectedDebt(debt);
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+        setSelectedDebt(null);
+    };
 
     return (
         <>
-            {showFormDebt && (
-                <DebtRegister handleClose={() => setShowFormDebt(false)} />
+            {open && (
+                <DebtModal onClose={handleClose}>
+                    <DebtRegister debt={selectedDebt} onClose={handleClose} />
+                </DebtModal>
             )}
             <Box className="w-full p-6">
                 <Box>
@@ -23,27 +40,8 @@ const DebtsPage = () => {
                         Listado de deudas
                     </Typography>
                 </Box>
-                <Box className="w-full flex justify-end p-3">
-                    <Button
-                        onClick={() => setShowFormDebt(true)}
-                        sx={{
-                            textTransform: 'none',
-                            background: '#FFF',
-                            px: 2,
-                            fontSize: 18,
-                            color: '#000',
-                            '&:hover': {
-                                background: '#7D2D6F',
-                                color: '#FFF',
-                            },
-                        }}
-                        className="max-lg:w-full"
-                    >
-                        Crear Deuda
-                    </Button>
-                </Box>
 
-                <ListDebts />
+                <ListDebts onCreate={handleCreate} onEdit={handleEdit} />
             </Box>
         </>
     );

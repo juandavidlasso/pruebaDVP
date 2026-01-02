@@ -1,3 +1,4 @@
+import type React from 'react';
 import { useQuery } from '@apollo/client/react';
 import {
     Box,
@@ -13,11 +14,21 @@ import {
 } from '@mui/material';
 import { toast } from 'react-toastify';
 import { DEBTS_USER } from '../../../auth/graphql/resolvers/debt/debt.query';
-import type { DebtData } from '../../../shared/types/debt';
-import { formatDecimal } from '../../../shared/utils/lib';
+import type { Debt, DebtData } from '../../../shared/types/debt';
+import {
+    formatDateMinus5Hours,
+    formatDecimal,
+} from '../../../shared/utils/lib';
 import Loader from '../../../shared/components/Loader';
+import { useDeleteDebt } from '../../../auth/hooks/debt/useDeleteDebt';
 
-const ListDebts = () => {
+interface Props {
+    onCreate: () => void;
+    onEdit: (debt: Debt) => void;
+}
+
+const ListDebts: React.FC<Props> = ({ onCreate, onEdit }) => {
+    const { handleDelete } = useDeleteDebt();
     const { data, loading, error } = useQuery<DebtData>(DEBTS_USER);
 
     if (loading) return <Loader />;
@@ -25,7 +36,26 @@ const ListDebts = () => {
     if (error) toast.error(error.message);
 
     return (
-        <Box className="w-full p-5 mt-5 max-lg:px-2">
+        <Box className="w-full p-5 mt-5 max-lg:px-2 pt-0">
+            <Box className="w-full flex justify-end p-3 mb-7">
+                <Button
+                    onClick={onCreate}
+                    sx={{
+                        textTransform: 'none',
+                        background: '#FFF',
+                        px: 2,
+                        fontSize: 18,
+                        color: '#000',
+                        '&:hover': {
+                            background: '#7D2D6F',
+                            color: '#FFF',
+                        },
+                    }}
+                    className="max-lg:w-full"
+                >
+                    Crear Deuda
+                </Button>
+            </Box>
             {data?.debtsByUser?.length === 0 ? (
                 <Typography className="text-white text-4xl! font-bold! max-lg:text-2xl!">
                     No hay deudas registradas
@@ -93,19 +123,29 @@ const ListDebts = () => {
                                         {debt?.description}
                                     </TableCell>
                                     <TableCell align="center">
-                                        {debt?.paid_at}
+                                        {formatDateMinus5Hours(debt?.paid_at)}
                                     </TableCell>
                                     <TableCell align="center">
-                                        {debt?.created_at}
+                                        {formatDateMinus5Hours(
+                                            debt?.created_at
+                                        )}
                                     </TableCell>
                                     <TableCell
                                         align="center"
                                         className="flex! gap-3! justify-center max-lg:flex-col"
                                     >
-                                        <Button className="bg-yellow-700! hover:bg-yellow-600! normal-case! text-lg! py-1 text-white! max-lg:text-sm!">
+                                        <Button
+                                            onClick={() => onEdit(debt)}
+                                            className="bg-yellow-700! hover:bg-yellow-600! normal-case! text-lg! py-1 text-white! max-lg:text-sm!"
+                                        >
                                             Editar
                                         </Button>
-                                        <Button className="bg-red-900! hover:bg-red-800! normal-case! text-lg! py-1! text-white! max-lg:text-sm!">
+                                        <Button
+                                            onClick={() =>
+                                                handleDelete(debt?.id_debt)
+                                            }
+                                            className="bg-red-900! hover:bg-red-800! normal-case! text-lg! py-1! text-white! max-lg:text-sm!"
+                                        >
                                             Eliminar
                                         </Button>
                                         <Button className="bg-blue-900! hover:bg-blue-800! normal-case! text-lg! py-1! text-white! max-lg:text-sm!">

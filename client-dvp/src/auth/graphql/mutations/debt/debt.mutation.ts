@@ -16,3 +16,22 @@ export const CREATE_DEBT = gql`
         }
     }
 `;
+
+export const UPDATE_DEBT = gql`
+    mutation UpdateDebt($debt: UpdateDebtInput) {
+        updateDebt(debt: $debt) {
+            id_debt
+            amount
+            description
+            created_at
+            paid_at
+            user_id
+        }
+    }
+`;
+
+export const DELETE_DEBT = gql`
+    mutation DeleteDebt($idDebt: Int) {
+        deleteDebt(id_debt: $idDebt)
+    }
+`;

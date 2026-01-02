@@ -8,7 +8,6 @@ export interface UpdateDebtInput {
     id_debt: number;
     description?: string;
     amount?: number;
-    paid_at: string;
     user_id: number;
 }
 
