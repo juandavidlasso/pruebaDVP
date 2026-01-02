@@ -30,7 +30,7 @@ export const createUser = async (email: string, password: string): Promise<User>
 export const loginUser = async (
   email: string,
   password: string
-): Promise<string> => {
+): Promise<{ token: string; user: { id: number; email: string } }> => {
   try {
     if (!email || !password) {
       throw badRequest("Email and password are required");
@@ -53,7 +53,13 @@ export const loginUser = async (
 
     const token = jwt.sign({ userId: user.id_user },JWT_SECRET,{ expiresIn: "1d" });    
 
-    return token;
+    return {
+      token,
+      user: {
+        id: user.id_user,
+        email: user.email,
+      }
+    };
   } catch (error) {
     if (error instanceof Error) throw error;
     throw internalServerError();

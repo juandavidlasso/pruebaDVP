@@ -1,9 +1,12 @@
 import { createContext } from "react";
+import type { User } from "../../shared/types/user";
 
 type AuthContextType = {
   token: string | null;
+  user: User | null;
   isAuthenticated: boolean;
-  login: (token: string) => void;
+  saveToken: (token: string) => void;
+  setUser: (user: User) => void;
   logout: () => void;
 };
 
