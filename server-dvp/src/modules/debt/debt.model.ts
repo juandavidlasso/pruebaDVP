@@ -26,7 +26,7 @@ Debt.init({
     },
     created_at: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     paid_at: {
       type: DataTypes.STRING,

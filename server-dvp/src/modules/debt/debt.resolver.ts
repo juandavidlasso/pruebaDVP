@@ -11,6 +11,6 @@ export const debtResolvers = {
         },
     },
     Mutation: {
-        createDebt: (_: any, args: { amount: number; description: string; created_at: string; paid_at: string; user_id: number }) => createDebt(args.amount, args.description, args.created_at, args.paid_at, args.user_id)
+        createDebt: (_: any, args: { amount: number; description: string; user_id: number }) => createDebt(args.amount, args.description, args.user_id)
     },
 };

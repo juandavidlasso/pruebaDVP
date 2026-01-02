@@ -9,9 +9,9 @@ export const getADebtsByUser = async (id_user:number): Promise<Debt[]> => {
     }
 };
 
-export const createDebt = async (amount: number, description: string, created_at: string, paid_at: string, user_id: number): Promise<Debt> => {
+export const createDebt = async (amount: number, description: string, user_id: number): Promise<Debt> => {
     try {
-        const newDebt = await Debt.create({ amount, description, created_at, paid_at, user_id });
+        const newDebt = await Debt.create({ amount, description, user_id });
         return newDebt;
     } catch (error) {
         throw internalServerError();

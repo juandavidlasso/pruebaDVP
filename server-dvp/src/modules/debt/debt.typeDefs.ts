@@ -14,6 +14,6 @@ export const debtTypeDefs = `#graphql
     }
 
     type Mutation {
-        createDebt(amount: Int!, description: String!, created_at: String!, paid_at: String, user_id: Int!): Debt
+        createDebt(amount: Int!, description: String!, user_id: Int!): Debt
     }
 `;
