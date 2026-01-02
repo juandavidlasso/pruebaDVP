@@ -28,6 +28,7 @@ export const debtResolvers = {
                     amount: number;
                     description: string;
                     user_id: number;
+                    paid_at: string;
                 };
             },
             context: any
@@ -43,9 +44,9 @@ export const debtResolvers = {
                 amount: debt?.amount,
                 description: debt?.description,
                 user_id: debt?.user_id,
+                ...(debt?.paid_at ? { paid_at: new Date() } : {}),
             });
         },
-
         deleteDebt: async (_: any, args: { id_debt: number }, context: any) => {
             if (!context.user) {
                 throw unauthorized();

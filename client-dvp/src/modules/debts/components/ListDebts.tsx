@@ -3,6 +3,7 @@ import { useQuery } from '@apollo/client/react';
 import {
     Box,
     Button,
+    Chip,
     Paper,
     Table,
     TableBody,
@@ -28,7 +29,7 @@ interface Props {
 }
 
 const ListDebts: React.FC<Props> = ({ onCreate, onEdit }) => {
-    const { handleDelete } = useDeleteDebt();
+    const { handleDelete, handlePay } = useDeleteDebt();
     const { data, loading, error } = useQuery<DebtData>(DEBTS_USER);
 
     if (loading) return <Loader />;
@@ -102,6 +103,12 @@ const ListDebts: React.FC<Props> = ({ onCreate, onEdit }) => {
                                     align="center"
                                     className="font-bold! text-lg!"
                                 >
+                                    Estado
+                                </TableCell>
+                                <TableCell
+                                    align="center"
+                                    className="font-bold! text-lg!"
+                                >
                                     Edición
                                 </TableCell>
                             </TableRow>
@@ -130,25 +137,45 @@ const ListDebts: React.FC<Props> = ({ onCreate, onEdit }) => {
                                             debt?.created_at
                                         )}
                                     </TableCell>
+                                    <TableCell align="center">
+                                        <Chip
+                                            label={
+                                                debt?.paid_at
+                                                    ? 'Pagada'
+                                                    : 'Pendiente'
+                                            }
+                                            color={
+                                                debt?.paid_at
+                                                    ? 'success'
+                                                    : 'warning'
+                                            }
+                                        />
+                                    </TableCell>
                                     <TableCell
                                         align="center"
                                         className="flex! gap-3! justify-center max-lg:flex-col"
                                     >
                                         <Button
+                                            disabled={!!debt?.paid_at}
                                             onClick={() => onEdit(debt)}
-                                            className="bg-yellow-700! hover:bg-yellow-600! normal-case! text-lg! py-1 text-white! max-lg:text-sm!"
+                                            className="bg-yellow-700! hover:bg-yellow-600! normal-case! text-lg! py-1 text-white! max-lg:text-sm! disabled:bg-gray-300!"
                                         >
                                             Editar
                                         </Button>
                                         <Button
+                                            disabled={!!debt?.paid_at}
                                             onClick={() =>
                                                 handleDelete(debt?.id_debt)
                                             }
-                                            className="bg-red-900! hover:bg-red-800! normal-case! text-lg! py-1! text-white! max-lg:text-sm!"
+                                            className="bg-red-900! hover:bg-red-800! normal-case! text-lg! py-1! text-white! max-lg:text-sm! disabled:bg-gray-300!"
                                         >
                                             Eliminar
                                         </Button>
-                                        <Button className="bg-blue-900! hover:bg-blue-800! normal-case! text-lg! py-1! text-white! max-lg:text-sm!">
+                                        <Button
+                                            disabled={!!debt?.paid_at}
+                                            onClick={() => handlePay(debt)}
+                                            className="bg-blue-900! hover:bg-blue-800! normal-case! text-lg! py-1! text-white! max-lg:text-sm! disabled:bg-gray-300!"
+                                        >
                                             Pagar deuda
                                         </Button>
                                     </TableCell>

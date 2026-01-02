@@ -1,7 +1,14 @@
 import { useMutation } from '@apollo/client/react';
 import { toast } from 'react-toastify';
-import type { DebtDeleteResponse } from '../../../shared/types/debt';
-import { DELETE_DEBT } from '../../graphql/mutations/debt/debt.mutation';
+import type {
+    Debt,
+    DebtDeleteResponse,
+    DebtUpdateResponse,
+} from '../../../shared/types/debt';
+import {
+    DELETE_DEBT,
+    UPDATE_DEBT,
+} from '../../graphql/mutations/debt/debt.mutation';
 import { DEBTS_USER } from '../../graphql/resolvers/debt/debt.query';
 
 export const useDeleteDebt = () => {
@@ -15,13 +22,38 @@ export const useDeleteDebt = () => {
         refetchQueries: [{ query: DEBTS_USER }],
     });
 
+    const [updateDebt] = useMutation<DebtUpdateResponse>(UPDATE_DEBT, {
+        onCompleted: () => {
+            toast.success('La deuda fue pagada exitosamente');
+        },
+        onError: (error) => {
+            toast.error(error.message);
+        },
+        refetchQueries: [{ query: DEBTS_USER }],
+    });
+
     const handleDelete = async (id_debt: number) => {
         await deleteDebt({
             variables: { idDebt: id_debt },
         });
     };
 
+    const handlePay = async (debt: Debt) => {
+        await updateDebt({
+            variables: {
+                debt: {
+                    id_debt: debt?.id_debt,
+                    amount: debt?.amount,
+                    description: debt?.description,
+                    user_id: debt?.user_id,
+                    paid_at: 'Pago',
+                },
+            },
+        });
+    };
+
     return {
+        handlePay,
         handleDelete,
     };
 };

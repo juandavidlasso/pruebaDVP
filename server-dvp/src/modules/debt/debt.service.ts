@@ -8,6 +8,7 @@ export interface UpdateDebtInput {
     id_debt: number;
     description?: string;
     amount?: number;
+    paid_at?: Date;
     user_id: number;
 }
 
@@ -45,7 +46,10 @@ export const updateDebtService = async (
 
         await Debt.update(debt, { where: { id_debt: debt?.id_debt } });
 
-        return findDebt;
+        const updatedDebt = await Debt.findByPk(id_debt);
+        if (!updatedDebt) throw notFound('Debt not found');
+
+        return updatedDebt;
     } catch (error) {
         if (error instanceof Error) throw error;
         throw internalServerError();
