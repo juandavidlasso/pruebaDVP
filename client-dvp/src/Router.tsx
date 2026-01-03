@@ -1,10 +1,10 @@
+import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { AuthLayout } from './shared/layouts/AuthLayout';
 import { ROUTES } from './shared/constants/routes';
 import { ProtectedRoute } from './shared/layouts/ProtectedRoute';
 import { MainLayout } from './shared/layouts/MainLayout';
 import { RootRedirect } from './RootRedirect';
-import { lazy } from 'react';
 
 const LoginPageLazy = lazy(() => import('./modules/login/LoginPage'));
 const RegisterPageLazy = lazy(() => import('./modules/register/RegisterPage'));
