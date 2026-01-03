@@ -48,3 +48,10 @@ export interface DebtFileResponse {
         base64: string;
     };
 }
+
+export type DebtFilter = 'ALL' | 'PAID' | 'PENDING';
+
+export interface IFilters {
+    name: string;
+    value: DebtFilter;
+}

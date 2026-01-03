@@ -54,12 +54,14 @@ const ListDebts: React.FC<Props> = ({ onCreate, onEdit }) => {
                     No hay deudas registradas
                 </Typography>
             ) : (
-                <Debts
-                    data={data}
-                    onEdit={onEdit}
-                    handleDelete={handleDelete}
-                    handlePay={handlePay}
-                />
+                <Box className="px-22.5 max-lg:px-1">
+                    <Debts
+                        data={data}
+                        onEdit={onEdit}
+                        handleDelete={handleDelete}
+                        handlePay={handlePay}
+                    />
+                </Box>
             )}
 
             {data?.debtsByUser && data?.debtsByUser?.length > 0 && (
