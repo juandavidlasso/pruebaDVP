@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client/react';
 import { AuthContext } from './AuthContext';
-import type { User } from '../../shared/types/user';
-import { ME_QUERY } from '../graphql/resolvers/login/login.query';
+import type { IUser } from '../../shared/types/user';
+import { ME_QUERY } from '../../graphql/resolvers/login/login.query';
 import type { MeResponse } from '../../shared/types/login';
 import { apolloClient } from '../../apollo/client';
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-    const [user, setUser] = useState<User | null>(null);
+    const [user, setUser] = useState<IUser | null>(null);
     const [token, setToken] = useState<string | null>(() =>
         sessionStorage.getItem('token')
     );

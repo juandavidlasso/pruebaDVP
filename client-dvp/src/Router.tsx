@@ -3,17 +3,19 @@ import { AuthLayout } from './shared/layouts/AuthLayout';
 import { ROUTES } from './shared/constants/routes';
 import { ProtectedRoute } from './shared/layouts/ProtectedRoute';
 import { MainLayout } from './shared/layouts/MainLayout';
-import LoginPage from './modules/login/Login';
-import RegisterPage from './modules/register/Register';
-import DebtsPage from './modules/debts/Debt';
 import { RootRedirect } from './RootRedirect';
+import { lazy } from 'react';
+
+const LoginPageLazy = lazy(() => import('./modules/login/LoginPage'));
+const RegisterPageLazy = lazy(() => import('./modules/register/RegisterPage'));
+const DebtsPagePageLazy = lazy(() => import('./modules/debts/DebtsPage'));
 
 export const Router = () => {
     return (
         <Routes>
             <Route element={<AuthLayout />}>
-                <Route path={ROUTES.LOGIN} element={<LoginPage />} />
-                <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
+                <Route path={ROUTES.LOGIN} element={<LoginPageLazy />} />
+                <Route path={ROUTES.REGISTER} element={<RegisterPageLazy />} />
             </Route>
 
             <Route
@@ -23,7 +25,7 @@ export const Router = () => {
                     </ProtectedRoute>
                 }
             >
-                <Route path={ROUTES.DEBTS} element={<DebtsPage />} />
+                <Route path={ROUTES.DEBTS} element={<DebtsPagePageLazy />} />
             </Route>
 
             <Route path={ROUTES.ROOT} element={<RootRedirect />} />

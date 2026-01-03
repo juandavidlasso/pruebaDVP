@@ -1,3 +1,4 @@
+import ExcelJS from 'exceljs';
 import {
     internalServerError,
     notFound,
@@ -71,4 +72,41 @@ export const deleteDebtService = async (id_debt: number) => {
         if (error instanceof Error) throw error;
         throw internalServerError();
     }
+};
+
+export const exportDebtsService = async (userId: number) => {
+    const debts = await Debt.findAll({
+        where: { user_id: userId },
+        order: [['created_at', 'DESC']],
+    });
+
+    const workbook = new ExcelJS.Workbook();
+    const sheet = workbook.addWorksheet('Debts');
+
+    sheet.columns = [
+        { header: 'ID', key: 'id_debt', width: 10 },
+        { header: 'Valor', key: 'amount', width: 15 },
+        { header: 'Descripción', key: 'description', width: 30 },
+        { header: 'Estado', key: 'status', width: 15 },
+        { header: 'Fecha de creación', key: 'created_at', width: 25 },
+        { header: 'Fecha de pago', key: 'paid_at', width: 25 },
+    ];
+
+    debts.forEach((debt) => {
+        sheet.addRow({
+            id_debt: debt?.id_debt,
+            description: debt?.description,
+            amount: debt?.amount,
+            status: debt?.paid_at ? 'Pagada' : 'Pendiente',
+            created_at: debt?.created_at,
+            paid_at: debt?.paid_at ?? '',
+        });
+    });
+
+    const buffer = await workbook.xlsx.writeBuffer();
+
+    return {
+        fileName: `debts-${Date.now()}.xlsx`,
+        base64: Buffer.from(buffer).toString('base64'),
+    };
 };

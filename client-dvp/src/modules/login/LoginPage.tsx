@@ -9,8 +9,8 @@ import {
     TextField,
 } from '@mui/material';
 import { Link, Navigate } from 'react-router-dom';
-import { useLogin } from '../../auth/hooks/login/useLogin';
-import { useAuth } from '../../auth/hooks/auth/useAuth';
+import { useLogin } from '../../hooks/login/useLogin';
+import { useAuth } from '../../hooks/auth/useAuth';
 import { ROUTES } from '../../shared/constants/routes';
 
 const LoginPage = () => {

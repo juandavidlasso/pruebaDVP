@@ -12,3 +12,12 @@ export const DEBTS_USER = gql`
         }
     }
 `;
+
+export const DOWNLOAD_DEBTS = gql`
+    query ExportDebts($userId: Int!) {
+        exportDebts(user_id: $userId) {
+            fileName
+            base64
+        }
+    }
+`;

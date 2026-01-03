@@ -8,14 +8,14 @@ import {
     UPDATE_DEBT,
 } from '../../graphql/mutations/debt/debt.mutation';
 import type {
-    Debt,
+    IDebt,
     DebtCreateResponse,
     DebtUpdateResponse,
     FormDataDebt,
-} from '../../../shared/types/debt';
+} from '../../shared/types/debt';
 import { useAuth } from '../auth/useAuth';
 import { DEBTS_USER } from '../../graphql/resolvers/debt/debt.query';
-import { parseAmount } from '../../../shared/utils/lib';
+import { parseAmount } from '../../shared/utils/lib';
 
 const schemaValidation = yup
     .object({
@@ -35,11 +35,11 @@ const schemaValidation = yup
     })
     .required();
 
-export const useDebt = ({
+export const useDebtForm = ({
     debt,
     onClose,
 }: {
-    debt: Debt | null;
+    debt: IDebt | null;
     onClose: () => void;
 }) => {
     const { user } = useAuth();

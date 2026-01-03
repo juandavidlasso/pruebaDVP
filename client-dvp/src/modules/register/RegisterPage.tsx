@@ -9,7 +9,7 @@ import {
     TextField,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { useRegister } from '../../auth/hooks/register/useRegister';
+import { useRegister } from '../../hooks/register/useRegister';
 
 const RegisterPage = () => {
     const { errors, loading, register, onSubmit } = useRegister();

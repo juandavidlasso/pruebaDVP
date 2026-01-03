@@ -2,17 +2,17 @@ import { useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import DebtRegister from './components/DebtRegister';
 import ListDebts from './components/ListDebts';
-import type { Debt } from '../../shared/types/debt';
+import type { IDebt } from '../../shared/types/debt';
 import DebtModal from './components/DebtModal';
 
 const DebtsPage = () => {
     const [open, setOpen] = useState(false);
-    const [selectedDebt, setSelectedDebt] = useState<Debt | null>(null);
+    const [selectedDebt, setSelectedDebt] = useState<IDebt | null>(null);
     const handleCreate = () => {
         setSelectedDebt(null);
         setOpen(true);
     };
-    const handleEdit = (debt: Debt) => {
+    const handleEdit = (debt: IDebt) => {
         setSelectedDebt(debt);
         setOpen(true);
     };

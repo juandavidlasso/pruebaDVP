@@ -1,8 +1,8 @@
 import { createContext } from 'react';
-import type { User } from '../../shared/types/user';
+import type { IUser } from '../../shared/types/user';
 
 type AuthContextType = {
-    user: User | null;
+    user: IUser | null;
     isAuthenticated: boolean;
     saveToken: (token: string) => void;
     loading: boolean;

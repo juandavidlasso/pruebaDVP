@@ -3,7 +3,7 @@ export interface FormDataDebt {
     description: string;
 }
 
-export interface Debt {
+export interface IDebt {
     amount: number;
     created_at: string;
     description: string;
@@ -39,5 +39,12 @@ export interface DebtDeleteResponse {
 }
 
 export interface DebtData {
-    debtsByUser: Debt[];
+    debtsByUser: IDebt[];
+}
+
+export interface DebtFileResponse {
+    exportDebts: {
+        fileName: string;
+        base64: string;
+    };
 }

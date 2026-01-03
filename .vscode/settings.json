@@ -1,9 +1,0 @@
-{
-    "prettier.configPath": "",
-    "prettier.prettierPath": "",
-    "prettier.useTabs": true,
-    "prettier.singleQuote": true,
-    "prettier.requireConfig": true,
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-}

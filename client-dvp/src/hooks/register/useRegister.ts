@@ -6,10 +6,10 @@ import { toast } from 'react-toastify';
 import type {
     FormDataRegister,
     RegisterResponse,
-} from '../../../shared/types/register';
+} from '../../shared/types/register';
 import { REGISTER_MUTATION } from '../../graphql/mutations/register/register.mutation';
 import { useNavigate } from 'react-router-dom';
-import { ROUTES } from '../../../shared/constants/routes';
+import { ROUTES } from '../../shared/constants/routes';
 
 const schemaValidation = yup
     .object({
@@ -38,7 +38,7 @@ export const useRegister = () => {
         {
             onCompleted(data) {
                 toast.success(
-                    `User ${data.createUser.email} registered successfully. Now you can Sign In`
+                    `Usuario ${data.createUser.email} se ha registrado exitosamente. Ahora puede iniciar sesión`
                 );
                 reset();
                 navigate(ROUTES.LOGIN, { replace: true });

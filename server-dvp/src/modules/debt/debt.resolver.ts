@@ -2,6 +2,7 @@ import { unauthorized } from '../../shared/errors/graphql-errors';
 import {
     createDebtService,
     deleteDebtService,
+    exportDebtsService,
     getADebtsByUser,
     updateDebtService,
 } from './debt.service';
@@ -13,6 +14,13 @@ export const debtResolvers = {
                 throw unauthorized();
             }
             return getADebtsByUser(context.user.id_user);
+        },
+        exportDebts: async (
+            _: any,
+            args: { user_id: number },
+            context: any
+        ) => {
+            return exportDebtsService(args?.user_id);
         },
     },
     Mutation: {

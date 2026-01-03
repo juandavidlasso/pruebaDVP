@@ -9,7 +9,7 @@ import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { useAuth } from '../../../auth/hooks/auth/useAuth';
+import { useAuth } from '../../../hooks/auth/useAuth';
 import { Button } from '@mui/material';
 
 function NavBar() {

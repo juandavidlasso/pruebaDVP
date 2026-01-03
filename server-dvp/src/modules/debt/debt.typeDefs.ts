@@ -7,7 +7,6 @@ export const debtTypeDefs = `#graphql
         paid_at: String
         user_id: Int
     }
-
     
     input UpdateDebtInput {
         id_debt: Int
@@ -15,6 +14,15 @@ export const debtTypeDefs = `#graphql
         amount: Int
         paid_at: String
         user_id:Int
+    }
+
+    type ExportDebtsResponse {
+        fileName: String!
+        base64: String!
+    }
+
+    extend type Query {
+        exportDebts(user_id:Int!): ExportDebtsResponse!
     }
 
     type Query {

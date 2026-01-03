@@ -1,16 +1,16 @@
 import type React from 'react';
 import { Box, Button, CircularProgress, TextField } from '@mui/material';
-import { useDebt } from '../../../auth/hooks/debt/useDebt';
+import { useDebtForm } from '../../../hooks/debt/useDebtForm';
 import { formatNumericString } from '../../../shared/utils/lib';
-import type { Debt } from '../../../shared/types/debt';
+import type { IDebt } from '../../../shared/types/debt';
 
 interface Props {
     onClose: () => void;
-    debt: Debt | null;
+    debt: IDebt | null;
 }
 
 const DebtRegister: React.FC<Props> = ({ debt, onClose }) => {
-    const { register, errors, loading, onSubmit, setValue } = useDebt({
+    const { register, errors, loading, onSubmit, setValue } = useDebtForm({
         debt,
         onClose,
     });

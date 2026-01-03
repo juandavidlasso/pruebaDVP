@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom';
-import { useAuth } from './auth/hooks/auth/useAuth';
+import { useAuth } from './hooks/auth/useAuth';
 import { ROUTES } from './shared/constants/routes';
 
 export const RootRedirect = () => {

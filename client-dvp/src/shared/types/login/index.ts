@@ -1,4 +1,4 @@
-import type { User } from '../user';
+import type { IUser } from '../user';
 
 export interface FormDataLogin {
     email: string;
@@ -10,5 +10,5 @@ export interface LoginResponse {
 }
 
 export interface MeResponse {
-    me: User;
+    me: IUser;
 }

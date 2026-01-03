@@ -3,7 +3,7 @@ import { useMutation } from '@apollo/client/react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { toast } from 'react-toastify';
-import type { FormDataLogin, LoginResponse } from '../../../shared/types/login';
+import type { FormDataLogin, LoginResponse } from '../../shared/types/login';
 import { LOGIN_MUTATION } from '../../graphql/mutations/login/login.mutation';
 import { useAuth } from '../auth/useAuth';
 
