@@ -4,6 +4,7 @@ import {
     notFound,
 } from '../../shared/errors/graphql-errors';
 import { Debt } from './debt.model';
+import { User } from '../user/user.model';
 
 export interface UpdateDebtInput {
     id_debt: number;
@@ -13,7 +14,7 @@ export interface UpdateDebtInput {
     user_id: number;
 }
 
-export const getADebtsByUser = async (id_user: number): Promise<Debt[]> => {
+export const getDebtsByUser = async (id_user: number): Promise<Debt[]> => {
     try {
         return await Debt.findAll({ where: { user_id: id_user } });
     } catch (error) {
@@ -109,4 +110,18 @@ export const exportDebtsService = async (userId: number) => {
         fileName: `debts-${new Date().toISOString().split('T')[0]}.xlsx`,
         base64: Buffer.from(buffer).toString('base64'),
     };
+};
+
+export const getDebtById = async (id_debt: number): Promise<Debt> => {
+    try {
+        const debt = await Debt.findByPk(id_debt, {
+            include: [{ model: User, as: 'user' }],
+        });
+        if (!debt) throw notFound('Debt not found');
+
+        return debt;
+    } catch (error) {
+        if (error instanceof Error) throw error;
+        throw internalServerError();
+    }
 };

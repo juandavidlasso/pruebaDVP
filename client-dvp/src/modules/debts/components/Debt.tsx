@@ -1,4 +1,5 @@
 import type React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button, Chip, TableCell, TableRow } from '@mui/material';
 import type { IDebt } from '../../../shared/types/debt';
 import {
@@ -14,6 +15,7 @@ interface Props {
 }
 
 const Debt: React.FC<Props> = ({ debt, onEdit, handleDelete, handlePay }) => {
+    const navigate = useNavigate();
     return (
         <TableRow key={debt?.id_debt} hover>
             <TableCell component="th" scope="row" align="center">
@@ -58,6 +60,12 @@ const Debt: React.FC<Props> = ({ debt, onEdit, handleDelete, handlePay }) => {
                     className="bg-blue-900! hover:bg-blue-800! normal-case! text-lg! py-1! text-white! max-lg:text-sm! disabled:bg-gray-300!"
                 >
                     Pagar deuda
+                </Button>
+                <Button
+                    onClick={() => navigate(`/debt-detail/${debt?.id_debt}`)}
+                    className="bg-[#7D2D6F]! hover:bg-[#7A0265]! normal-case! text-lg! py-1! text-white! max-lg:text-sm! disabled:bg-gray-300!"
+                >
+                    Ver detalle
                 </Button>
             </TableCell>
         </TableRow>

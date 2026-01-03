@@ -21,3 +21,19 @@ export const DOWNLOAD_DEBTS = gql`
         }
     }
 `;
+
+export const DEBT_BY_ID = gql`
+    query DebtById($idDebt: Int!) {
+        debtById(id_debt: $idDebt) {
+            id_debt
+            amount
+            description
+            created_at
+            paid_at
+            user {
+                id_user
+                email
+            }
+        }
+    }
+`;

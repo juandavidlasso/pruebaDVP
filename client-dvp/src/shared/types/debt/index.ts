@@ -1,3 +1,5 @@
+import type { IUser } from '../user';
+
 export interface FormDataDebt {
     amount: string;
     description: string;
@@ -10,6 +12,7 @@ export interface IDebt {
     id_debt: number;
     paid_at: string;
     user_id: number;
+    user?: IUser;
 }
 
 export interface DebtCreateResponse {
@@ -54,4 +57,8 @@ export type DebtFilter = 'ALL' | 'PAID' | 'PENDING';
 export interface IFilters {
     name: string;
     value: DebtFilter;
+}
+
+export interface IDebtResponse {
+    debtById: IDebt;
 }

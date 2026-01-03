@@ -9,6 +9,9 @@ import { RootRedirect } from './RootRedirect';
 const LoginPageLazy = lazy(() => import('./modules/login/LoginPage'));
 const RegisterPageLazy = lazy(() => import('./modules/register/RegisterPage'));
 const DebtsPagePageLazy = lazy(() => import('./modules/debts/DebtsPage'));
+const DebtsDetailPagePageLazy = lazy(
+    () => import('./modules/debts/components/DebtDetailPage')
+);
 
 export const Router = () => {
     return (
@@ -26,6 +29,10 @@ export const Router = () => {
                 }
             >
                 <Route path={ROUTES.DEBTS} element={<DebtsPagePageLazy />} />
+                <Route
+                    path={`${ROUTES.DEBT_DETAIL}/:id`}
+                    element={<DebtsDetailPagePageLazy />}
+                />
             </Route>
 
             <Route path={ROUTES.ROOT} element={<RootRedirect />} />

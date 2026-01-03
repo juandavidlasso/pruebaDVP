@@ -3,7 +3,8 @@ import {
     createDebtService,
     deleteDebtService,
     exportDebtsService,
-    getADebtsByUser,
+    getDebtById,
+    getDebtsByUser,
     updateDebtService,
 } from './debt.service';
 
@@ -13,7 +14,7 @@ export const debtResolvers = {
             if (!context.user) {
                 throw unauthorized();
             }
-            return getADebtsByUser(context.user.id_user);
+            return getDebtsByUser(context.user.id_user);
         },
         exportDebts: async (
             _: any,
@@ -21,6 +22,12 @@ export const debtResolvers = {
             context: any
         ) => {
             return exportDebtsService(args?.user_id);
+        },
+        debtById: async (_: any, args: { id_debt: number }, context: any) => {
+            if (!context.user) {
+                throw unauthorized();
+            }
+            return getDebtById(args?.id_debt);
         },
     },
     Mutation: {

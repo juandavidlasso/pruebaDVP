@@ -6,6 +6,7 @@ export const debtTypeDefs = `#graphql
         created_at: String
         paid_at: String
         user_id: Int
+        user: User
     }
     
     input UpdateDebtInput {
@@ -27,6 +28,7 @@ export const debtTypeDefs = `#graphql
 
     type Query {
         debtsByUser: [Debt]
+        debtById(id_debt: Int!): Debt
     }
 
     type Mutation {
