@@ -106,7 +106,7 @@ export const exportDebtsService = async (userId: number) => {
     const buffer = await workbook.xlsx.writeBuffer();
 
     return {
-        fileName: `debts-${Date.now()}.xlsx`,
+        fileName: `debts-${new Date().toISOString().split('T')[0]}.xlsx`,
         base64: Buffer.from(buffer).toString('base64'),
     };
 };

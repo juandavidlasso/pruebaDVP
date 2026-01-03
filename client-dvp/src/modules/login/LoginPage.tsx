@@ -27,7 +27,7 @@ const LoginPage = () => {
                 <form onSubmit={onSubmit}>
                     <CardContent className="flex flex-col gap-8 items-center px-8!">
                         <h2 className="text-black text-3xl font-bold">
-                            Iniciar Sesión
+                            Inicia Sesión
                         </h2>
                         <Box className="w-full">
                             <TextField
