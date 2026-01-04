@@ -55,6 +55,8 @@ OWNER to postgres;
 
 7. En la carpeta de server-dvp ejecutar el comando `npm start` para iniciar el servidor en modo producción. En la carpeta de client-dvp ejecutar el comando `npm run preview` para iniciar el cliente en modo producción.
 
+8. Desca la carpeta de client-dvp ejecutar el comando `npm run test` para ejecutar los test.
+
 # Estructura del proyecto
 
 ESTRUCTURA DEL SERVIDOR
