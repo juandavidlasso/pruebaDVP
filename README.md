@@ -59,6 +59,7 @@ OWNER to postgres;
 
 ESTRUCTURA DEL SERVIDOR
 
+```txt
 src/
 ├── app.ts
 ├── server.ts
@@ -91,50 +92,53 @@ src/
 │
 ├── shared/
 │ ├── errors/
-│ │ └── graphql-errors.ts. # Control de errores de GraphQL
+│ │ └── graphql-errors.ts # Control de errores GraphQL
 │ │
 │ └── utils/
-│ └── requireAuth.ts. # Controla la sesión del usuario
+│ └── requireAuth.ts # Control de sesión
+```
 
 ESTRUCTURA DEL CLIENTE
 
+```txt
 src/
+├── App.tsx
 ├── Router.tsx
 ├── RootRedirect.tsx
-├── App.tsx
 │
 ├── test/
-│ ├── handlers.ts # Mock de peticiones graphql
-│ ├── renderWithProvider.tsx # Provider para los test
-│ └── server.ts # Servidor para los test con vitest
-│ └── setup.ts # Inicialización del servidor de los test con vitest
+│ ├── handlers.ts # Mock de peticiones GraphQL
+│ ├── renderWithProvider.tsx # Provider para tests
+│ ├── server.ts # MSW server
+│ └── setup.ts # Setup de Vitest
 │
 ├── shared/
-│ ├── components # Componentes globales
-│ └── constants # Archivo de constante para las rutas
-│ └── layouts # Layouts globales
-│ └── types # Interfaces de los componentes
-│ └── utils # Funciones globales
+│ ├── components/ # Componentes globales
+│ ├── constants/ # Constantes (rutas, etc.)
+│ ├── layouts/ # Layouts globales
+│ ├── types/ # Interfaces
+│ └── utils/ # Funciones globales
 │
 ├── modules/
-│ ├── debts # Módulo de deudas
-│ └── login # Módulo para iniciar sesión
-│ └── register # Módulo para registrarse
+│ ├── debts/ # Módulo de deudas
+│ ├── login/ # Módulo login
+│ └── register/ # Módulo registro
 │
 ├── hooks/
-│ ├── auth # Hook personalizado para la autenticación
-│ └── debt # Hook personalizado para las deudas
-│ ├── login # Hooks personalizado para el inicio de sesión
-│ ├── register # Hook personalizado para el registro de usuarios
+│ ├── auth/ # Hook autenticación
+│ ├── debt/ # Hook deudas
+│ ├── login/ # Hook login
+│ └── register/ # Hook registro
 │
 ├── graphql/
-│ ├── mutations # Mutaciones de graphql
-│ └── resolvers # Querys de graphql
-|
+│ ├── mutations/ # Mutaciones GraphQL
+│ └── resolvers/ # Queries GraphQL
+│
 ├── context/
-│ ├── AuthContext # Hook para la sesión del usuario
-│ └── AuthProvider # Hook para la sesión del usuario
-|
+│ ├── AuthContext.tsx
+│ └── AuthProvider.tsx
+│
 ├── apollo/
-│ ├── cache # Configuración de la cache de apollo para las querys
-│ └── client # Configuración del cliente de apollo
+│ ├── cache.ts # Configuración cache Apollo
+│ └── client.ts # Cliente Apollo
+```
