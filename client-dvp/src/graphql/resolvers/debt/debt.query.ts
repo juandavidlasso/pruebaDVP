@@ -14,8 +14,8 @@ export const DEBTS_USER = gql`
 `;
 
 export const DOWNLOAD_DEBTS = gql`
-    query ExportDebts($userId: Int!) {
-        exportDebts(user_id: $userId) {
+    query ExportDebts {
+        exportDebts {
             fileName
             base64
         }

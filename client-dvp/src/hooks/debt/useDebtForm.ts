@@ -13,7 +13,6 @@ import type {
     DebtUpdateResponse,
     FormDataDebt,
 } from '../../shared/types/debt';
-import { useAuth } from '../auth/useAuth';
 import { DEBTS_USER } from '../../graphql/resolvers/debt/debt.query';
 import { parseAmount } from '../../shared/utils/lib';
 
@@ -42,8 +41,6 @@ export const useDebtForm = ({
     debt: IDebt | null;
     onClose: () => void;
 }) => {
-    const { user } = useAuth();
-
     const {
         register,
         handleSubmit,
@@ -90,7 +87,6 @@ export const useDebtForm = ({
                         id_debt: debt?.id_debt,
                         amount: parseAmount(data.amount),
                         description: data.description,
-                        user_id: user?.id_user,
                     },
                 },
             });
@@ -100,7 +96,6 @@ export const useDebtForm = ({
                 variables: {
                     amount: parseAmount(data.amount),
                     description: data.description,
-                    userId: user?.id_user,
                 },
             });
             toast.success('La deuda se registro exitosamente');

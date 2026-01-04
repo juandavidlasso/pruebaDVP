@@ -14,7 +14,6 @@ export const debtTypeDefs = `#graphql
         description: String
         amount: Int
         paid_at: String
-        user_id:Int
     }
 
     type ExportDebtsResponse {
@@ -23,7 +22,7 @@ export const debtTypeDefs = `#graphql
     }
 
     extend type Query {
-        exportDebts(user_id:Int!): ExportDebtsResponse!
+        exportDebts: ExportDebtsResponse!
     }
 
     type Query {
@@ -32,7 +31,7 @@ export const debtTypeDefs = `#graphql
     }
 
     type Mutation {
-        createDebt(amount: Int!, description: String!, user_id: Int!): Debt
+        createDebt(amount: Int!, description: String!): Debt
         updateDebt(debt: UpdateDebtInput): Debt
         deleteDebt(id_debt: Int): Boolean
     }

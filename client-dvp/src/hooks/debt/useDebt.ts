@@ -14,10 +14,8 @@ import {
     DEBTS_USER,
     DOWNLOAD_DEBTS,
 } from '../../graphql/resolvers/debt/debt.query';
-import { useAuth } from '../auth/useAuth';
 
 export const useDebt = () => {
-    const { user } = useAuth();
     const [deleteDebt] = useMutation<DebtDeleteResponse>(DELETE_DEBT, {
         onCompleted: () => {
             toast.success('La deuda se eliminó exitosamente');
@@ -45,9 +43,7 @@ export const useDebt = () => {
         }
     );
     const handleSubmit = async () => {
-        const { data, error } = await exportDebts({
-            variables: { userId: user?.id_user },
-        });
+        const { data, error } = await exportDebts();
 
         if (error) return toast.error(error.message);
 
@@ -74,7 +70,6 @@ export const useDebt = () => {
                     id_debt: debt?.id_debt,
                     amount: debt?.amount,
                     description: debt?.description,
-                    user_id: debt?.user_id,
                     paid_at: 'Pago',
                 },
             },
